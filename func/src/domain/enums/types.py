@@ -6,7 +6,7 @@ from strenum import StrEnum
 
 
 class QueueTypes(IntEnum):
-    USER_IDENTIFIER_DATA = 4
+    TERM_QUEUE = 1
 
 
 class TermsFileType(StrEnum):
