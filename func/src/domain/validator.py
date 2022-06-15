@@ -1,5 +1,5 @@
 # Jormungandr - Term.Sign
-from .enums.types import TermsFileType
+from .enums.types import TermsType
 
 # Standards
 from typing import List
@@ -8,9 +8,5 @@ from typing import List
 from pydantic import BaseModel
 
 
-class TermFile(BaseModel):
-    file_type: TermsFileType
-
-
-class TermsFile(BaseModel):
-    file_types: List[TermsFileType]
+class TermFiles(BaseModel):
+    terms_file: List[TermsType]

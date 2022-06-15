@@ -17,7 +17,7 @@ class Audit:
 
     @classmethod
     async def register_terms_log(cls, terms_model: TermsModel):
-        message = terms_model.get_user_terms_signed_template()
+        message = terms_model.get_user_terms_signed_audit_template()
         (
             success,
             status_sent_to_persephone

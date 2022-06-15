@@ -9,7 +9,7 @@ class QueueTypes(IntEnum):
     TERM_QUEUE = 1
 
 
-class TermsFileType(StrEnum):
+class TermsType(StrEnum):
     TERM_APPLICATION = "term_application"
     TERM_OPEN_ACCOUNT = "term_open_account"
     TERM_REFUSAL = "term_refusal"
@@ -22,3 +22,6 @@ class TermsFileType(StrEnum):
     TERM_MONEY_CORP = "term_money_corp"
     TERM_GRINGO_WORLD = "term_gringo_world"
     TERM_GRINGO_WORLD_GENERAL_ADVICES = "term_gringo_world_general_advices"
+
+    def __repr__(self):
+        return self.value

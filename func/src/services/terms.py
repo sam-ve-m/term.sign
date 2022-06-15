@@ -29,7 +29,7 @@ class TermSignService:
 
     async def _get_terms_version(self):
         terms_version = list()
-        for term_type in self.terms_type_validated["file_types"]:
+        for term_type in self.terms_type_validated["terms_file"]:
             term_version = await FileRepository.get_current_term_version(
                 term_type=term_type)
             if not term_version:
@@ -41,3 +41,4 @@ class TermSignService:
         user = await UserRepository.find_one_by_unique_id(unique_id=self.unique_id)
         if not user:
             raise UserUniqueIdNotExists
+        return True

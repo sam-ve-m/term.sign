@@ -1,6 +1,6 @@
 # Jormungandr - Onboarding
 from ...infrastructures.s3.infrastructure import S3Infrastructure
-from ...domain.enums.types import TermsFileType
+from ...domain.enums.types import TermsType
 
 # Third party
 from etria_logger import Gladsheim
@@ -12,7 +12,7 @@ class FileRepository:
     infra = S3Infrastructure
 
     @classmethod
-    async def get_current_term_version(cls, term_type: TermsFileType) -> int:
+    async def get_current_term_version(cls, term_type: TermsType) -> int:
         version = 0
         try:
             async with cls.infra.get_resource() as s3_resource:

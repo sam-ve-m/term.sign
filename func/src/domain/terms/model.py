@@ -9,7 +9,7 @@ class TermsModel:
         self.term_answer_time_stamp = int(datetime.utcnow().timestamp())
         self.terms_signed = self._get_term_and_sign()
 
-    def get_user_terms_signed_template(self) -> dict:
+    def get_user_terms_signed_audit_template(self) -> dict:
         user_terms_signed_template = {
             "unique_id": self.unique_id,
             "terms_type": self.terms_type,
@@ -22,7 +22,7 @@ class TermsModel:
     def _get_term_and_sign(self):
         terms_signed = dict()
         terms_length = len(self.terms_version)
-        term_type_list = self.terms_type.get("file_types")
+        term_type_list = self.terms_type.get("terms_file")
         for index in range(terms_length):
             terms_signed.update(
                 {
