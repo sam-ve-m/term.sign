@@ -1,5 +1,5 @@
 # Jormungandr - Onboarding
-from ...domain.exceptions import ErrorOnSendAuditLog
+from ...domain.exceptions.exceptions import ErrorOnSendAuditLog
 from ...domain.enums.types import QueueTypes
 from ...domain.terms.model import TermsModel
 
@@ -11,22 +11,25 @@ from persephone_client import Persephone
 
 class Audit:
     audit_client = Persephone
-    partition = QueueTypes.TERM_QUEUE.value
-    topic = config("PERSEPHONE_TOPIC_USER")
-    schema_name = config("PERSEPHONE_USER_TERMS_SIGN_SCHEMA")
 
     @classmethod
-    async def register_terms_log(cls, terms_model: TermsModel):
+    async def record_message_log(cls, terms_model: TermsModel) -> bool:
         message = terms_model.get_user_terms_signed_audit_template()
+        partition = QueueTypes.TERM_QUEUE
+        topic = config("PERSEPHONE_TOPIC_USER")
+        schema_name = config("PERSEPHONE_USER_TERMS_SIGN_SCHEMA")
         (
             success,
-            status_sent_to_persephone
+            status_sent_to_persephone,
         ) = await cls.audit_client.send_to_persephone(
-            topic=cls.topic,
-            partition=cls.partition,
+            topic=topic,
+            partition=partition,
             message=message,
-            schema_name=cls.schema_name,
+            schema_name=schema_name,
         )
         if not success:
-            Gladsheim.error(message="Audit::register_user_log::Error on trying to register log")
+            Gladsheim.error(
+                message="Audit::register_user_log::Error on trying to register log"
+            )
             raise ErrorOnSendAuditLog
+        return True

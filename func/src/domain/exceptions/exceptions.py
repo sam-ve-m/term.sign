@@ -1,6 +1,8 @@
 class ErrorOnDecodeJwt(Exception):
-    msg = "Jormungandr-Onboarding::terms_sign::Fail when trying to get unique id," \
-          " jwt not decoded successfully"
+    msg = (
+        "Jormungandr-Onboarding::terms_sign::Fail when trying to get unique id,"
+        " jwt not decoded successfully"
+    )
 
 
 class UserUniqueIdNotExists(Exception):
@@ -16,5 +18,7 @@ class ErrorOnSendAuditLog(Exception):
 
 
 class ErrorOnUpdateUser(Exception):
-    msg = "Jormungandr-Onboarding::terms_sign::Error on trying to update user in mongo_db::" \
-          "User not exists, or unique_id invalid"
+    msg = (
+        "Jormungandr-Onboarding::terms_sign::Error on trying to update user in mongo_db::"
+        "User not exists, or unique_id invalid"
+    )
