@@ -15,7 +15,7 @@ class FileRepository:
         version = 0
         try:
             async with cls.infra.get_resource() as s3_resource:
-                bucket = await s3_resource.Bucket(config("AWS_BUCKET_TERMS_SIGN"))
+                bucket = await s3_resource.Bucket(config("AWS_BUCKET_TERMS"))
                 async for s3_object in bucket.objects.filter(
                     Prefix=term_type, Delimiter="/"
                 ):
