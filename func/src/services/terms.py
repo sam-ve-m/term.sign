@@ -1,5 +1,6 @@
 # Jormungandr - Term.Sign
-from func.src.domain.validators.validator import TermFiles
+from etria_logger import Gladsheim
+from src.domain.validators.validator import TermFiles
 from ..domain.exceptions.exceptions import (
     UserUniqueIdNotExists,
     TermVersionNotExists,

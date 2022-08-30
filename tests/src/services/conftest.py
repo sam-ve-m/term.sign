@@ -1,5 +1,5 @@
 # Jormungandr - Term.Sign
-from func.src.services.terms import TermSignService
+from src.services.terms import TermSignService
 from .stubs import stub_terms_type_validated, stub_unique_id
 
 # Third party

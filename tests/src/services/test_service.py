@@ -1,4 +1,4 @@
-from func.src.domain.exceptions.exceptions import (
+from src.domain.exceptions.exceptions import (
     UserUniqueIdNotExists,
     TermVersionNotExists,
     ErrorOnUpdateUser,

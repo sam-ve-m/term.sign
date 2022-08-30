@@ -8,7 +8,7 @@ from src.domain.exceptions.exceptions import (
     TermVersionNotExists,
 )
 from src.domain.response.model import ResponseModel
-from func.src.domain.validators.validator import TermFiles
+from src.domain.validators.validator import TermFiles
 from src.services.jwt import JwtService
 from src.services.terms import TermSignService
 
