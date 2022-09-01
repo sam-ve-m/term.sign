@@ -1,5 +1,5 @@
 # Jormungandr - Term.Sign
-from .enums.types import TermsType
+from ..enums.types import TermsType
 
 # Standards
 from typing import List

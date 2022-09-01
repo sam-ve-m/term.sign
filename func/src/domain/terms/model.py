@@ -1,11 +1,17 @@
+# Jormungandr
+from src.domain.validators.validator import TermFiles
+
+# Standards
 from datetime import datetime
 
 
 class TermsModel:
-    def __init__(self, unique_id: str, terms_type_validated: dict, terms_version: list):
+    def __init__(
+        self, unique_id: str, terms_type_validated: TermFiles, terms_version: list
+    ):
         self.unique_id = unique_id
         self.terms_version = terms_version
-        self.terms_type = terms_type_validated
+        self.terms_type = terms_type_validated.terms_file
         self.term_answer_time_stamp = int(datetime.utcnow().timestamp())
         self.terms_signed = self._get_term_and_sign()
 
@@ -19,14 +25,13 @@ class TermsModel:
         }
         return user_terms_signed_template
 
-    def _get_term_and_sign(self):
+    def _get_term_and_sign(self) -> dict:
         terms_signed = dict()
         terms_length = len(self.terms_version)
-        term_type_list = self.terms_type.get("terms_file")
         for index in range(terms_length):
             terms_signed.update(
                 {
-                    f"terms.{term_type_list[index]}": {
+                    f"terms.{self.terms_type[index]}": {
                         "version": self.terms_version[index],
                         "date": datetime.utcnow(),
                         "is_deprecated": False,
