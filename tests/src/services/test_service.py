@@ -19,7 +19,7 @@ import pytest
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.UserRepository.find_one_by_unique_id", return_value=True
+    "src.services.terms.UserRepository.find_one_by_unique_id", return_value=True
 )
 async def test_when_unique_id_exists_then_proceed(mock_find_one, term_sign_service):
     success = await term_sign_service._verify_unique_id_exists()
@@ -30,7 +30,7 @@ async def test_when_unique_id_exists_then_proceed(mock_find_one, term_sign_servi
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.UserRepository.find_one_by_unique_id", return_value=None
+    "src.services.terms.UserRepository.find_one_by_unique_id", return_value=None
 )
 async def test_when_unique_id_not_exists_then_raises(mock_find_one, term_sign_service):
     with pytest.raises(UserUniqueIdNotExists):
@@ -39,7 +39,7 @@ async def test_when_unique_id_not_exists_then_raises(mock_find_one, term_sign_se
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.FileRepository.get_current_term_version",
+    "src.services.terms.FileRepository.get_current_term_version",
     side_effect=[1, 5, 3],
 )
 async def test_when_success_to_find_terms_version_then_return_terms_version(
@@ -55,7 +55,7 @@ async def test_when_success_to_find_terms_version_then_return_terms_version(
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.FileRepository.get_current_term_version",
+    "src.services.terms.FileRepository.get_current_term_version",
     side_effect=[1, 5, 3],
 )
 async def test_when_success_to_find_terms_version_then_mock_was_called(
@@ -68,7 +68,7 @@ async def test_when_success_to_find_terms_version_then_mock_was_called(
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.FileRepository.get_current_term_version",
+    "src.services.terms.FileRepository.get_current_term_version",
     side_effect=[1, 0, 3],
 )
 async def test_when_not_find_terms_version_then_raises(
@@ -80,12 +80,12 @@ async def test_when_not_find_terms_version_then_raises(
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.UserRepository.update_one_with_terms_signed",
+    "src.services.terms.UserRepository.update_one_with_terms_signed",
     return_value=stub_user_updated,
 )
-@patch("func.src.services.terms.Audit.record_message_log")
+@patch("src.services.terms.Audit.record_message_log")
 @patch(
-    "func.src.services.terms.FileRepository.get_current_term_version",
+    "src.services.terms.FileRepository.get_current_term_version",
     side_effect=[1, 5, 3],
 )
 async def test_when_user_terms_sign_success_then_return_true(
@@ -98,12 +98,12 @@ async def test_when_user_terms_sign_success_then_return_true(
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.UserRepository.update_one_with_terms_signed",
+    "src.services.terms.UserRepository.update_one_with_terms_signed",
     return_value=stub_user_updated,
 )
-@patch("func.src.services.terms.Audit.record_message_log")
+@patch("src.services.terms.Audit.record_message_log")
 @patch(
-    "func.src.services.terms.FileRepository.get_current_term_version",
+    "src.services.terms.FileRepository.get_current_term_version",
     side_effect=[1, 5, 3],
 )
 async def test_when_user_terms_sign_success_then_mocks_was_called(
@@ -118,12 +118,12 @@ async def test_when_user_terms_sign_success_then_mocks_was_called(
 
 @pytest.mark.asyncio
 @patch(
-    "func.src.services.terms.UserRepository.update_one_with_terms_signed",
+    "src.services.terms.UserRepository.update_one_with_terms_signed",
     return_value=stub_user_not_updated,
 )
-@patch("func.src.services.terms.Audit.record_message_log")
+@patch("src.services.terms.Audit.record_message_log")
 @patch(
-    "func.src.services.terms.FileRepository.get_current_term_version",
+    "src.services.terms.FileRepository.get_current_term_version",
     side_effect=[1, 5, 3],
 )
 async def test_when_failed_to_update_user_terms_sign_then_raises(
