@@ -39,9 +39,9 @@ async def terms_sign():
         return response
 
     except ErrorOnDecodeJwt as ex:
-        Gladsheim.info(error=ex, message=ex.msg)
+        Gladsheim.error(error=ex, message=ex.msg)
         response = ResponseModel(
-            success=False, code=InternalCode.JWT_INVALID, message=msg_error
+            success=False, code=InternalCode.JWT_INVALID, message="Unauthorized token"
         ).build_http_response(status=HTTPStatus.UNAUTHORIZED)
         return response
 
