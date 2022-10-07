@@ -35,7 +35,7 @@ spec:
   InvokeStrategy:
     ExecutionStrategy:
       ExecutorType: newdeploy
-      MaxScale: 1
+      MaxScale: 3
       MinScale: 1
       SpecializationTimeout: 120
       TargetCPUPercent: 80
@@ -51,5 +51,5 @@ spec:
     packageref:
       name: term-sign-fn-a90fb944-e96e-425e-b23f-86e71dcbd142
       namespace: default
-  requestsPerPod: 1
+  requestsPerPod: 10000
   resources: {}
