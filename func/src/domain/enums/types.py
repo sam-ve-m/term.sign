@@ -18,6 +18,7 @@ class TermsType(StrEnum):
     TERM_REFUSAL = "term_refusal"
     TERM_NON_COMPLIANCE = "term_non_compliance"
     TERM_RETAIL_LIQUID_PROVIDER = "term_retail_liquid_provider"
+    TERM_MISMATCH_PROFILE = "term_mismatch_profile"
 
     TERM_AND_PRIVACY_POLICY_DATA_SHARING_POLICY_DL_PT = "term_and_privacy_policy_data_sharing_policy_dl_pt"
     TERM_AND_PRIVACY_POLICY_DATA_SHARING_POLICY_DL_US = "term_and_privacy_policy_data_sharing_policy_dl_us"
