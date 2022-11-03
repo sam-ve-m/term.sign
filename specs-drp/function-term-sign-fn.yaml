@@ -1,0 +1,55 @@
+include:
+- ./func/*
+kind: ArchiveUploadSpec
+name: func-nq6u
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: term-sign-fn-a90fb944-e96e-425e-b23f-86e71dcbd142
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: term-sign-env
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://func-nq6u
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-08-23T14:14:27Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: term-sign-fn
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: newdeploy
+      MaxScale: 3
+      MinScale: 1
+      SpecializationTimeout: 120
+      TargetCPUPercent: 80
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: term-sign-env
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: main.terms_sign
+    packageref:
+      name: term-sign-fn-a90fb944-e96e-425e-b23f-86e71dcbd142
+      namespace: default
+  requestsPerPod: 10000
+  resources: {}
