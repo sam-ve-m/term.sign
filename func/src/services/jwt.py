@@ -19,7 +19,7 @@ class JwtService:
             if HeimdallStatusResponses.SUCCESS.value == heimdall_status_response.value:
                 unique_id = jwt_content["decoded_jwt"]["user"].get("unique_id")
                 return unique_id
-            raise ErrorOnDecodeJwt
+            raise ErrorOnDecodeJwt()
         except Exception as ex:
             message = "JwtService::decode_jwt_and_get_unique_id::Failed to decode jwt"
             Gladsheim.error(error=ex, message=message)

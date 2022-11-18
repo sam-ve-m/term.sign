@@ -22,3 +22,11 @@ class ErrorOnUpdateUser(Exception):
         "Jormungandr-Onboarding::terms_sign::Error on trying to update user in mongo_db::"
         "User not exists, or unique_id invalid"
     )
+
+
+class DeviceInfoRequestFailed(Exception):
+    msg = "Error trying to get device info"
+
+
+class DeviceInfoNotSupplied(Exception):
+    msg = "Device info not supplied"
