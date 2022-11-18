@@ -18,9 +18,7 @@ import pytest
 
 
 @pytest.mark.asyncio
-@patch(
-    "src.services.terms.UserRepository.find_one_by_unique_id", return_value=True
-)
+@patch("src.services.terms.UserRepository.find_one_by_unique_id", return_value=True)
 async def test_when_unique_id_exists_then_proceed(mock_find_one, term_sign_service):
     success = await term_sign_service._verify_unique_id_exists()
 
@@ -29,9 +27,7 @@ async def test_when_unique_id_exists_then_proceed(mock_find_one, term_sign_servi
 
 
 @pytest.mark.asyncio
-@patch(
-    "src.services.terms.UserRepository.find_one_by_unique_id", return_value=None
-)
+@patch("src.services.terms.UserRepository.find_one_by_unique_id", return_value=None)
 async def test_when_unique_id_not_exists_then_raises(mock_find_one, term_sign_service):
     with pytest.raises(UserUniqueIdNotExists):
         await term_sign_service._verify_unique_id_exists()

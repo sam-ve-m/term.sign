@@ -19,11 +19,14 @@ class TermsModel:
         user_terms_signed_template = {
             "unique_id": self.unique_id,
             "terms_type": self.terms_type,
-            "terms_update": {self.terms_type[index].value: {
-                "version": self.terms_version[index],
-                "date": datetime.utcnow(),
-                "is_deprecated": False,
-            } for index in range(len(self.terms_version))},
+            "terms_update": {
+                self.terms_type[index].value: {
+                    "version": self.terms_version[index],
+                    "date": datetime.utcnow(),
+                    "is_deprecated": False,
+                }
+                for index in range(len(self.terms_version))
+            },
             "user_accept": True,
             "term_answer_time_stamp": self.term_answer_time_stamp,
         }
@@ -35,6 +38,7 @@ class TermsModel:
                 "version": self.terms_version[index],
                 "date": datetime.utcnow(),
                 "is_deprecated": False,
-            } for index in range(len(self.terms_version))
+            }
+            for index in range(len(self.terms_version))
         }
         return terms_signed
