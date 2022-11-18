@@ -1,8 +1,6 @@
-# Jormungandr
-from src.domain.validators.validator import TermFiles
-
-# Standards
 from datetime import datetime
+
+from src.domain.validators.validator import TermFiles
 
 
 class TermsModel:

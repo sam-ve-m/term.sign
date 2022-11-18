@@ -1,4 +1,8 @@
-# Jormungandr - Term.Sign
+from http import HTTPStatus
+
+from etria_logger import Gladsheim
+from flask import request
+
 from src.domain.enums.code import InternalCode
 from src.domain.exceptions.exceptions import (
     ErrorOnSendAuditLog,
@@ -11,13 +15,6 @@ from src.domain.response.model import ResponseModel
 from src.domain.validators.validator import TermFiles
 from src.services.jwt import JwtService
 from src.services.terms import TermSignService
-
-# Standards
-from http import HTTPStatus
-
-# Third party
-from etria_logger import Gladsheim
-from flask import request
 
 
 async def terms_sign():

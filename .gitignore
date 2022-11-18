@@ -48,5 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
-# others
+# Python virtual env
+venv/
+
+# Tests
 .coverage
+.pytest_cache/

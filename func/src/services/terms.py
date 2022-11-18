@@ -1,5 +1,3 @@
-# Jormungandr - Term.Sign
-from etria_logger import Gladsheim
 from src.domain.validators.validator import TermFiles
 from ..domain.exceptions.exceptions import (
     UserUniqueIdNotExists,

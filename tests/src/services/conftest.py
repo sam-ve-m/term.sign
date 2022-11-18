@@ -1,9 +1,7 @@
-# Jormungandr - Term.Sign
+from pytest import fixture
+
 from src.services.terms import TermSignService
 from .stubs import stub_terms_type_validated, stub_unique_id
-
-# Third party
-from pytest import fixture
 
 
 @fixture(scope="function")
