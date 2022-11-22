@@ -1,4 +1,8 @@
-# Jormungandr - Term.Sign
+from http import HTTPStatus
+
+from etria_logger import Gladsheim
+from flask import request
+
 from src.domain.enums.code import InternalCode
 from src.domain.exceptions.exceptions import (
     ErrorOnSendAuditLog,
@@ -6,29 +10,31 @@ from src.domain.exceptions.exceptions import (
     ErrorOnDecodeJwt,
     UserUniqueIdNotExists,
     TermVersionNotExists,
+    DeviceInfoRequestFailed,
+    DeviceInfoNotSupplied,
 )
 from src.domain.response.model import ResponseModel
 from src.domain.validators.validator import TermFiles
 from src.services.jwt import JwtService
 from src.services.terms import TermSignService
-
-# Standards
-from http import HTTPStatus
-
-# Third party
-from etria_logger import Gladsheim
-from flask import request
+from src.transports.device_info.transport import DeviceSecurity
 
 
 async def terms_sign():
-    raw_terms_type = request.json
-    jwt = request.headers.get("x-thebes-answer")
     msg_error = "Unexpected error occurred"
     try:
-        unique_id = await JwtService.decode_jwt_and_get_unique_id(jwt=jwt)
+        raw_terms_type = request.json
+        x_thebes_answer = request.headers.get("x-thebes-answer")
+        x_device_info = request.headers.get("x-device-info")
+
         terms_type_validated = TermFiles(**raw_terms_type)
+        unique_id = await JwtService.decode_jwt_and_get_unique_id(jwt=x_thebes_answer)
+        device_info = await DeviceSecurity.get_device_info(x_device_info)
+
         terms_service = TermSignService(
-            unique_id=unique_id, terms_type_validated=terms_type_validated
+            unique_id=unique_id,
+            terms_type_validated=terms_type_validated,
+            device_info=device_info,
         )
         success = await terms_service.user_terms_sign()
         response = ResponseModel(
@@ -71,6 +77,24 @@ async def terms_sign():
         response = ResponseModel(
             success=False, code=InternalCode.INTERNAL_SERVER_ERROR, message=msg_error
         ).build_http_response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
+        return response
+
+    except DeviceInfoRequestFailed as ex:
+        Gladsheim.error(error=ex, message=ex.msg)
+        response = ResponseModel(
+            success=False,
+            code=InternalCode.INTERNAL_SERVER_ERROR,
+            message="Error trying to get device info",
+        ).build_http_response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
+        return response
+
+    except DeviceInfoNotSupplied as ex:
+        Gladsheim.error(error=ex, message=ex.msg)
+        response = ResponseModel(
+            success=False,
+            code=InternalCode.INVALID_PARAMS,
+            message="Device info not supplied",
+        ).build_http_response(status=HTTPStatus.BAD_REQUEST)
         return response
 
     except ValueError as ex:
