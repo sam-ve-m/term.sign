@@ -1,6 +1,6 @@
-from src.domain.models.device_info import DeviceInfo
-from src.domain.terms.model import TermsModel
-from src.domain.validators.validator import TermFiles
+from func.src.domain.models.device_info import DeviceInfo
+from func.src.domain.terms.model import TermsModel
+from func.src.domain.validators.validator import TermFiles
 
 
 class UserUpdated:

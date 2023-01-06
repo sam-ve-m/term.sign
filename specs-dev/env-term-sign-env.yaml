@@ -6,19 +6,17 @@ metadata:
   namespace: default
 spec:
   builder:
-    command: build
     container:
       name: ""
       resources: {}
-    image: nexus.sigame.com.br/fission-builder-3.8:0.0.1
-  imagepullsecret: "nexus-v3"
+  imagepullsecret: nexus-v3
   keeparchive: false
   resources: {}
   runtime:
     container:
       name: ""
       resources: {}
-    image: nexus.sigame.com.br/fission-env-async:0.0.1
+    image: nexus.sigame.com.br/term-sign:0.4.0
     podspec:
       containers:
         - name: term-sign-env

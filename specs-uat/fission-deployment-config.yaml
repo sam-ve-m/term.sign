@@ -4,4 +4,4 @@
 apiVersion: fission.io/v1
 kind: DeploymentConfig
 name: term-sign
-uid: dafd2280-8d6f-48a2-ab81-10906e1fa4f2
+uid: 8373a278-58a4-4833-92a8-cffb9f6c5e8d
