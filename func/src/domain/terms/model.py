@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from src.domain.models.device_info import DeviceInfo
-from src.domain.validators.validator import TermFiles
+from func.src.domain.models.device_info import DeviceInfo
+from func.src.domain.validators.validator import TermFiles
 
 
 class TermsModel:

@@ -1,4 +1,4 @@
-from src.domain.validators.validator import TermFiles
+from func.src.domain.validators.validator import TermFiles
 from ..domain.exceptions.exceptions import (
     UserUniqueIdNotExists,
     TermVersionNotExists,

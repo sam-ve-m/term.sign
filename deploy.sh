@@ -1,5 +1,5 @@
 #!/bin/bash
 fission spec init
-fission env create --spec --name term-sign-env --image nexus.sigame.com.br/fission-async:0.1.7 --builder nexus.sigame.com.br/fission-builder-3.8:0.0.1
-fission fn create --spec --name term-sign-fn --env term-sign-env --src "./func/*" --entrypoint main.terms_sign --executortype newdeploy --maxscale 1
-fission route create --spec --name term-sign-rt --method PUT --url /term/sign --function term-sign-fn
+fission env create --name term-sign-env --image nexus.sigame.com.br/fission-term-sign:0.1.0 --poolsize 0 --version 3 --imagepullsecret "nexus-v3" --spec
+fission fn create --name term-sign-fn --env term-sign-env --code fission.py --targetcpu 80 --executortype newdeploy --maxscale 3 --requestsperpod 10000 --spec
+fission route create --name term-sign-rt --method PUT --url /term/sign --function term-sign-fn --spec

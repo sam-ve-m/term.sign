@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from src.services.terms import TermSignService
+from func.src.services.terms import TermSignService
 from .stubs import stub_terms_type_validated, stub_unique_id, stub_device_info
 
 
