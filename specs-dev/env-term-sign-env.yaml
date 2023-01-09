@@ -16,7 +16,7 @@ spec:
     container:
       name: ""
       resources: {}
-    image: nexus.sigame.com.br/term-sign:0.4.0
+    image: nexus.sigame.com.br/fission-term-sign:0.1.0
     podspec:
       containers:
         - name: term-sign-env
